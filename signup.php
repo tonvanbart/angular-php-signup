@@ -1,20 +1,39 @@
 <?php
 
+$debug = true;
+$filename = 'ep20.txt';
+
 function isBlank($field) {
     return (!$field || $field == "");
 }
 
-$method = $_SERVER['REQUEST_METHOD'];
-$ok = true;
+function debug($name, $value) {
+    global $debug;
+    if ($debug == true) {
+        $value_to_print = "";
+        if ( is_array( $value ) )  {
+            $value_to_print = print_r ( $value, TRUE );
+        } else {
+            $value_to_print = var_dump ( $value, TRUE );
+        }
+        echo("$name:$value_to_print\n");
+    }
+}
+
+function logtxt($text) {
+    file_put_contents('php://stderr', "$text\n");
+}
+
+function logvar($name,$var) {
+    $var_value = print_r($var, TRUE);
+    file_put_contents('php://stderr', "$name=$var_value\n");
+}
 
 function get_post_data() {
-    file_put_contents('php://stderr', print_r($_POST, TRUE));
     $result = [];
     foreach ($_POST as $key => $value) {
-        var_dump($key,$value);
         $result[$key] = htmlentities($value);
     }
-    var_dump($result);
     return $result;
 }
 
@@ -37,37 +56,35 @@ function get_missing_values($argArray) {
 
 function get_non_numerics($argarray) {
     $result = [];
-    foreach ($argarray as $key => $value) {
-        if (!is_numeric($value)) {
-            $result[] = $key;
-        }
+    if (!is_numeric($argarray['persons'])) {
+        $result[] = 'persons';
     }
     return $result;
 }
 
 function write_to_file($data) {
-    var_dump($data);
-    $fname = 'ep20.txt';
+    global $filename;
     $csvfields = array($data['naam'], $data['persons'], $data['room'], $data['remarks']);
 
-    if (!file_exists($fname)) {
-        touch($fname);
+    if (!file_exists($filename)) {
+        touch($filename);
     }
 
-    $handle = fopen($fname, 'a+');
-    fputcsv($handle, $csvfields);
+    $handle = fopen($filename, 'a+');
+    $writeresult = fputcsv($handle, $csvfields);
+    fclose($handle);
+    return $writeresult;
 }
 
-if ($method == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $postdata = get_post_data();
-    var_dump($postdata);
     $missing_fields = get_missing_values($postdata);
     $not_numeric = get_non_numerics($postdata);
 
     if (count($missing_fields) == 0 && count($not_numeric) == 0) {
-        write_to_file($postdata);
+        $writeresult = write_to_file($postdata);
     }
     
-    echo("{ missing : " +json_encode($missing_fields) + ", notnum : " + json_encode($not_numeric) + " }");
+    echo("{ missing: " . json_encode($missing_fields) . ", notnum: " . json_encode($not_numeric) . ", written: " . $writeresult . " }");
     
 }
