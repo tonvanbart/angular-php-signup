@@ -1,0 +1,53 @@
+<!doctype html>
+<html ng-app="signup">
+<head>
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
+    <script src="controller.js"></script>
+    <style type="text/css">
+        /* form styles */
+        label {
+            float: left;
+            margin-right: 0.5em;
+            text-align: right;
+            width: 30%;
+        }
+        .error {
+            padding-left: 1em;
+            color: red;
+            font-size: 80%;
+        }
+    </style>
+</head>
+<body ng-controller="control">
+<h1>Sign up</h1>
+
+<p>Sign up for EP19</p>
+<form id="signup" name="signup">
+    <label for="naam">Your name</label>
+    <input ng-model="naam" type="text" id="naam" name="naam" placeholder="Enter your name"/>
+    <br>
+    <label for="persons">Number of persons</label>
+    <input ng-model="persons" type="text" id="persons" name="persons" maxlength="1"/>
+    <br>
+    <label for="remarks">remarks</label>
+    <input ng-model="remarks" type="text" name="remarks" id="remarks" placeholder="Any remark you want to add"/>
+    <br>
+    <label for="room">Room preference</label>
+    <select name="room" id="room" ng-model="room">
+        <option value="single">single room</option>
+        <option value="share">will share a room</option>
+        <option value="double">double/family room</option>
+    </select>
+    <button ng-click="submit()">submit</button>
+</form>
+<table>
+    <tr ng-repeat="participant in participants">
+        <td>{{participant.name}}</td>
+        <td>{{participant.persons}}</td>
+        <td>{{participant.room}}</td>
+    </tr>
+</table>
+Total participants: {{calctotal()}}
+</body>
+</html>
