@@ -19,7 +19,7 @@ app.controller('control', function control($scope,$http) {
         }).success(function(data, status) {
                 $scope.handlePostSuccess(data, status);
         })
-        .error(function() { console.log('error,status='+status)});
+        .error(function() { console.log('error posting form, status='+status)});
     }
 
     $scope.refreshdata = function() {
@@ -28,8 +28,8 @@ app.controller('control', function control($scope,$http) {
             method:'GET',
             url: 'listpersons.php'
         }).success(function(data,status) {
-                $scope.participants = [];
-            for (i=0; i < data.length-1; i++) {
+            $scope.participants = [];
+            for (var i=0; i < data.length-1; i++) {
                 $scope.participants[i] = data[i];
             }
         }).error(function(data,status) {
@@ -39,6 +39,10 @@ app.controller('control', function control($scope,$http) {
 
     $scope.handlePostSuccess = function(data, status) {
         console.log('handlePostSuccess(' + data +',' + status +')');
+        console.log('scope.naam='+$scope.naam+',$scope[naam]='+$scope['naam']);
+        delete $scope.errornaam;
+        delete $scope.errorpersons;
+        delete $scope.errorroom;
         if (data.written) {
             delete $scope.formdata;
             delete $scope.naam;
@@ -47,7 +51,9 @@ app.controller('control', function control($scope,$http) {
             delete $scope.remarks;
             $scope.refreshdata();
         } else {
-
+            for (var i=0; i<data.missing.length; i++) {
+                $scope['error'+data.missing[i]] = "This is a required field";
+            }
         }
     }
 
