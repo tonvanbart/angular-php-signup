@@ -1,32 +1,25 @@
 <?php
 
-$debug = true;
+$debug = false;
 $filename = 'ep20.txt';
 
 function isBlank($field) {
     return (!$field || $field == "");
 }
 
-function debug($name, $value) {
+function logtxt($text) {
     global $debug;
     if ($debug == true) {
-        $value_to_print = "";
-        if ( is_array( $value ) )  {
-            $value_to_print = print_r ( $value, TRUE );
-        } else {
-            $value_to_print = var_dump ( $value, TRUE );
-        }
-        echo("$name:$value_to_print\n");
+        file_put_contents('php://stderr', "$text\n");
     }
 }
 
-function logtxt($text) {
-    file_put_contents('php://stderr', "$text\n");
-}
-
 function logvar($name,$var) {
-    $var_value = print_r($var, TRUE);
-    file_put_contents('php://stderr', "$name=$var_value\n");
+    global $debug;
+    if ($debug == true) {
+        $var_value = print_r($var, TRUE);
+        file_put_contents('php://stderr', "$name=$var_value\n");
+    }
 }
 
 function get_post_data() {
@@ -44,12 +37,6 @@ function get_post_data() {
 function get_missing_values($argArray) {
     logvar("get_missing_values argument array", $argArray);
     $result = [];
-
-//    foreach(array("naam","persons","room") as $key) {
-//        if (!array_key_exists($key, $argArray)) {
-//            $result[] = $key;
-//        }
-//    }
 
     foreach($argArray as $key => $value) {
         if ($key != "remarks" && isBlank($value)) {

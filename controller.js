@@ -54,6 +54,9 @@ app.controller('control', function control($scope,$http) {
             for (var i=0; i<data.missing.length; i++) {
                 $scope['error'+data.missing[i]] = "This is a required field";
             }
+            if (data.notnum.length > 0) {
+                $scope.errorpersons = "Please enter a number";
+            }
         }
     }
 
