@@ -17,10 +17,7 @@ app.controller('control', function control($scope,$http) {
                 return str.join("&");
             }
         }).success(function(data, status) {
-                console.log('success,data='+data+',status='+status);
-                if (data.written) {
-                    $scope.refreshdata();
-                }
+                $scope.handlePostSuccess(data, status);
         })
         .error(function() { console.log('error,status='+status)});
     }
@@ -38,6 +35,20 @@ app.controller('control', function control($scope,$http) {
         }).error(function(data,status) {
             console.log("error refreshing data, http status:" + status);
         });
+    }
+
+    $scope.handlePostSuccess = function(data, status) {
+        console.log('handlePostSuccess(' + data +',' + status +')');
+        if (data.written) {
+            delete $scope.formdata;
+            delete $scope.naam;
+            delete $scope.persons;
+            delete $scope.room;
+            delete $scope.remarks;
+            $scope.refreshdata();
+        } else {
+
+        }
     }
 
     $scope.calctotal = function() {
