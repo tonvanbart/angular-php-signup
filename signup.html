@@ -17,6 +17,12 @@
             color: red;
             font-size: 80%;
         }
+        table  th {
+            font-weight: bold;
+        }
+        table  tr:nth-child(odd) {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body ng-controller="control">
@@ -41,11 +47,18 @@
     </select>
     <button ng-click="submit()">submit</button>
 </form>
-<table>
+<table id="participants">
+    <tr>
+        <th>name</th>
+        <th>number of persons</th>
+        <th>room preference</th>
+        <th>remarks</th>
+    </tr>
     <tr ng-repeat="participant in participants">
         <td>{{participant.naam}}</td>
         <td>{{participant.persons}}</td>
         <td>{{participant.room}}</td>
+        <td>{{participant.remarks}}</td>
     </tr>
 </table>
 Total participants: {{calctotal()}}
