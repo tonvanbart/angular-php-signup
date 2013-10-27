@@ -1,23 +1,6 @@
 var app = angular.module('signup',[]);
 
 app.controller('control', function control($scope,$http) {
-    $scope.participants = [
-        {
-            'naam': 'Ton van Bart',
-            'persons':3,
-            'room':'double'
-        },
-        {
-            'naam': 'Ingrid Schmidt',
-            'persons':2,
-            'room':'share'
-        },
-        {
-            'naam': 'Darryl Richman',
-            'persons':1,
-            'room':'single'
-        }
-    ];
 
     $scope.submit = function() {
         console.log("submit(),naam=" + $scope.naam + ",persons=" + $scope.persons + ",room=" + $scope.room);
@@ -65,5 +48,8 @@ app.controller('control', function control($scope,$http) {
         }
         return result;
     }
+
+    $scope.participants = [];
+    $scope.refreshdata();
 
 });
