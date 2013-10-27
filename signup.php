@@ -30,14 +30,19 @@ function logvar($name,$var) {
 }
 
 function get_post_data() {
+    logvar('POSTDATA', $_POST);
     $result = [];
     foreach ($_POST as $key => $value) {
         $result[$key] = htmlentities($value);
+        if (strcasecmp($result[$key], "undefined") == 0) {
+            $result[$key] = "";
+        }
     }
     return $result;
 }
 
 function get_missing_values($argArray) {
+    logvar("get_missing_values argument array", $argArray);
     $result = [];
 
 //    foreach(array("naam","persons","room") as $key) {
@@ -81,10 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $missing_fields = get_missing_values($postdata);
     $not_numeric = get_non_numerics($postdata);
 
+    $writeresult = false;
     if (count($missing_fields) == 0 && count($not_numeric) == 0) {
         $writeresult = write_to_file($postdata);
     }
-    
-    echo("{ missing: " . json_encode($missing_fields) . ", notnum: " . json_encode($not_numeric) . ", written: " . $writeresult . " }");
+
+    header('Content-Type: application/javascript');
+    echo('{ "missing": ' . json_encode($missing_fields) . ', "notnum": ' . json_encode($not_numeric) . ', "written": ' . json_encode($writeresult) . ' }');
     
 }
