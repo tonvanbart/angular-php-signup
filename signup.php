@@ -24,7 +24,7 @@ function logvar($name,$var) {
 
 function get_post_data() {
     logvar('POSTDATA', $_POST);
-    $result = [];
+    $result = array();
     foreach ($_POST as $key => $value) {
         $result[$key] = htmlentities($value);
         if (strcasecmp($result[$key], "undefined") == 0) {
@@ -36,7 +36,7 @@ function get_post_data() {
 
 function get_missing_values($argArray) {
     logvar("get_missing_values argument array", $argArray);
-    $result = [];
+    $result = array();
 
     foreach($argArray as $key => $value) {
         if ($key != "remarks" && isBlank($value)) {
