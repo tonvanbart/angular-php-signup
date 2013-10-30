@@ -6,12 +6,14 @@
     <script src="controller.js"></script>
     <style type="text/css">
         /* form styles */
-        label {
-            float: left;
-            margin-right: 0.5em;
-            text-align: right;
-            width: 30%;
-        }
+    /*
+            label {
+                float: left;
+                margin-right: 0.5em;
+                text-align: right;
+                width: 30%;
+            }
+    */
         .error {
             padding-left: 1em;
             color: red;
@@ -30,18 +32,18 @@
 
 <p>Sign up for EP19</p>
 <form id="signup" name="signup">
-    <label for="naam">Your name</label>
+    <label for="naam">Your name</label><br>
     <input ng-model="naam" type="text" id="naam" name="naam" placeholder="Enter your name"/>
     <span class="error" id="error-naam">{{errornaam}}</span>
     <br>
-    <label for="persons">Number of persons</label>
-    <input ng-model="persons" type="text" id="persons" name="persons" maxlength="1"/>
+    <label for="persons">Number of persons</label><br>
+    <input ng-model="persons" type="text" id="persons" name="persons" size="2" maxlength="1"/>
     <span class="error" id="error-persons">{{errorpersons}}</span>
     <br>
-    <label for="remarks">remarks</label>
+    <label for="remarks">remarks</label><br>
     <input ng-model="remarks" type="text" name="remarks" id="remarks" placeholder="Any remark you want to add"/>
     <br>
-    <label for="room">Room preference</label>
+    <label for="room">Room preference</label><br>
     <select name="room" id="room" ng-model="room">
         <option value="single">single room</option>
         <option value="share">will share a room</option>
@@ -49,23 +51,33 @@
     </select>
     <span class="error" id="error-room">{{errorroom}}</span>
     <br>
+    <label for="extra">Would you like an extra night before or after EP?</label><br>
+    <select name="extra" id="extra" ng-model="extra">
+        <option value="none">no extra night</option>
+        <option value="before">before</option>
+        <option value="after">after</option>
+        <option value="both">before and after</option>
+    </select>
+    <br><br>
     <button ng-click="submit()">submit</button>
 </form>
+<p>The following {{calctotal()}} persons have already expressed interest:</p>
 <table id="participants">
     <tr>
         <th>name</th>
         <th>number of persons</th>
         <th>room preference</th>
+        <th>extra night before/after</th>
         <th>remarks</th>
     </tr>
     <tr ng-repeat="participant in participants">
         <td>{{participant.naam}}</td>
         <td>{{participant.persons}}</td>
         <td>{{participant.room}}</td>
+        <td>{{participant.extra}}</td>
         <td>{{participant.remarks}}</td>
     </tr>
 </table>
 <br>
-Total participants: {{calctotal()}}
 </body>
 </html>

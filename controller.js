@@ -3,8 +3,8 @@ var app = angular.module('signup',[]);
 app.controller('control', function control($scope,$http) {
 
     $scope.submit = function() {
-        console.log("submit(),naam=" + $scope.naam + ",persons=" + $scope.persons + ",room=" + $scope.room);
-        $scope.formdata = { naam: $scope.naam, persons: $scope.persons, room: $scope.room, remarks: $scope.remarks };
+        console.log("submit(),naam=" + $scope.naam + ",persons=" + $scope.persons + ",room=" + $scope.room + ",extra=" + $scope.extra);
+        $scope.formdata = { naam: $scope.naam, persons: $scope.persons, room: $scope.room, extra: $scope.extra, remarks: $scope.remarks };
         $http({
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -49,6 +49,8 @@ app.controller('control', function control($scope,$http) {
             delete $scope.persons;
             delete $scope.room;
             delete $scope.remarks;
+//            delete $scope.extra;
+            $scope.extra.selected = "none";
             $scope.refreshdata();
         } else {
             for (var i=0; i<data.missing.length; i++) {
@@ -71,5 +73,6 @@ app.controller('control', function control($scope,$http) {
 
     $scope.participants = [];
     $scope.refreshdata();
+    $scope.extra = "none";
 
 });
