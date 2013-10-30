@@ -24,6 +24,7 @@ app.controller('control', function control($scope,$http) {
 
     $scope.refreshdata = function() {
         console.log('refreshdata()');
+        $scope.participants = [];
         $http({
             method:'GET',
             url: 'listpersons.php'
@@ -49,8 +50,7 @@ app.controller('control', function control($scope,$http) {
             delete $scope.persons;
             delete $scope.room;
             delete $scope.remarks;
-//            delete $scope.extra;
-            $scope.extra.selected = "none";
+            $scope.extra = 'none';
             $scope.refreshdata();
         } else {
             for (var i=0; i<data.missing.length; i++) {
@@ -71,8 +71,9 @@ app.controller('control', function control($scope,$http) {
         return result;
     }
 
-    $scope.participants = [];
+    $scope.extras = ['none','before','after','before and after'];
+    $scope.rooms = ['single room','will share a room','double or family room'];
     $scope.refreshdata();
-    $scope.extra = "none";
+    $scope.extra = 'none';
 
 });
