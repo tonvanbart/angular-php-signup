@@ -1,7 +1,7 @@
 <?php
 
 $debug = false;
-$filename = 'ep20.txt';
+$filename = 'ep19.txt';
 
 function isBlank($field) {
     return (!$field || $field == "");
