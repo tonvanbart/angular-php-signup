@@ -1,5 +1,0 @@
-Tim,2,"double or family room","before and after","Graag lekker eten en lekker bier"
-"Ton en Karin",2,"double or family room",none,Bierrrrr
-"Peitje Puk",1,"will share a room",before,
-test,3,"double or family room",before,"test 1"
-test2,2,"will share a room",after,"test nummer 2"
