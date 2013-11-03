@@ -47,7 +47,7 @@ function get_missing_values($argArray) {
 }
 
 function get_non_numerics($argarray) {
-    $result = [];
+    $result = array();
     if (!is_numeric($argarray['persons'])) {
         $result[] = 'persons';
     }
