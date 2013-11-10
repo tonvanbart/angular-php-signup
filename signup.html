@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="signup">
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="signup" ng-controller="control">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -35,11 +35,11 @@
 <form id="signup" name="signup">
     <label for="naam">Your name</label><br>
     <input ng-model="naam" type="text" id="naam" name="naam" size="40" placeholder="Enter your name"/>
-    <span class="error" id="error-naam">{{errornaam}}</span>
+    <span class="error" id="error-naam" ng-bind="errornaam"></span>
     <br>
     <label for="persons">Number of persons</label><br>
     <input ng-model="persons" type="text" id="persons" name="persons" size="2" maxlength="1"/>
-    <span class="error" id="error-persons">{{errorpersons}}</span>
+    <span class="error" id="error-persons" ng-bind="errorpersons"></span>
     <br>
     <label for="remarks">remarks</label><br>
     <input ng-model="remarks" type="text" name="remarks" id="remarks" size="40" placeholder="Any remark you want to add"/>
@@ -48,7 +48,7 @@
     <select name="room" id="room" ng-model="room" ng-options="room for room in rooms">
         <option value=""><-- choose one --></option>
     </select>
-    <span class="error" id="error-room">{{errorroom}}</span>
+    <span class="error" id="error-room" ng-bind="errorroom"></span>
     <br>
     <label for="extra">Would you like an extra night before or after EP?</label><br>
     <select name="extra" id="extra" ng-model="extra" ng-options="extra for extra in extras">
@@ -57,7 +57,7 @@
     <button ng-click="submit()" class="btn btn-default">submit</button>
 </form>
    </p>
-<p>The following {{calctotal()}} persons have already expressed interest:</p>
+<p>The following <span ng-bind="calctotal()"></span> persons have already expressed interest:</p>
 <table id="participants">
     <tr>
         <th>name</th>
@@ -67,11 +67,11 @@
         <th>remarks</th>
     </tr>
     <tr ng-repeat="participant in participants">
-        <td>{{participant.naam}}</td>
-        <td>{{participant.persons}}</td>
-        <td>{{participant.room}}</td>
-        <td>{{participant.extra}}</td>
-        <td>{{participant.remarks}}</td>
+        <td ng-bind="participant.naam"></td>
+        <td ng-bind="participant.persons"></td>
+        <td ng-bind="participant.room"></td>
+        <td ng-bind="participant.extra"></td>
+        <td ng-bind="participant.remarks"></td>
     </tr>
 </table>
 <br>

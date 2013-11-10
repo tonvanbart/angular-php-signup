@@ -9,7 +9,7 @@ app.controller('control', function control($scope,$http) {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: $scope.formdata,
-            url: '/europrez/signup.php',
+            url: 'signup.php',
             transformRequest: function(obj) {
                 var str = [];
                 for(var p in obj)
@@ -30,7 +30,7 @@ app.controller('control', function control($scope,$http) {
             url: 'listpersons.php'
         }).success(function(data,status) {
             $scope.participants = [];
-            for (var i=0; i < data.length-1; i++) {
+            for (var i=0; i < data.length; i++) {
                 $scope.participants[i] = data[i];
             }
         }).error(function(data,status) {
@@ -66,7 +66,7 @@ app.controller('control', function control($scope,$http) {
         console.log("calctotal()");
         var result = 0;
         for (var i=0; i<$scope.participants.length; i++) {
-            result += $scope.participants[i].persons;
+            result += parseInt($scope.participants[i].persons);
         }
         return result;
     }
