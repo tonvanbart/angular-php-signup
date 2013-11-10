@@ -4,6 +4,7 @@ app.controller('control', function control($scope,$http) {
 
     $scope.submit = function() {
         console.log("submit(),naam=" + $scope.naam + ",persons=" + $scope.persons + ",room=" + $scope.room + ",extra=" + $scope.extra);
+        $scope.processing = true;
         $scope.formdata = { naam: $scope.naam, persons: $scope.persons, room: $scope.room, extra: $scope.extra, remarks: $scope.remarks };
         $http({
             method: 'POST',
@@ -19,7 +20,10 @@ app.controller('control', function control($scope,$http) {
         }).success(function(data, status) {
                 $scope.handlePostSuccess(data, status);
         })
-        .error(function() { console.log('error posting form, status='+status)});
+        .error(function() {
+                $scope.processing = false;
+                console.log('error posting form, status='+status)
+        });
     }
 
     $scope.refreshdata = function() {
@@ -39,6 +43,7 @@ app.controller('control', function control($scope,$http) {
     }
 
     $scope.handlePostSuccess = function(data, status) {
+        $scope.processing = false;
         console.log('handlePostSuccess(' + data +',' + status +')');
         console.log('scope.naam='+$scope.naam+',$scope[naam]='+$scope['naam']);
         delete $scope.errornaam;
@@ -75,5 +80,6 @@ app.controller('control', function control($scope,$http) {
     $scope.rooms = ['single room','will share a room','double or family room'];
     $scope.refreshdata();
     $scope.extra = 'none';
+    $scope.processing = false;
 
 });

@@ -54,7 +54,7 @@
     <select name="extra" id="extra" ng-model="extra" ng-options="extra for extra in extras">
     </select>
     <br><br>
-    <button ng-click="submit()" class="btn btn-default">submit</button>
+    <button ng-click="submit()" ng-disabled="processing" class="btn btn-default">submit</button>
 </form>
    </p>
 <p>The following <span ng-bind="calctotal()"></span> persons have already expressed interest:</p>
