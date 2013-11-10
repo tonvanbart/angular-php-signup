@@ -24,7 +24,7 @@ while (($data = fgetcsv($handle)) !== false) {
         "extra"   => unescape($data[3]),
         "remarks" => unescape($data[4])
     );
-    array_push($result, $person);
+    array_unshift($result, $person);
 }
 echo(json_encode($result));
 fclose($handle);
