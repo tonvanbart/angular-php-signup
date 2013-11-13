@@ -7,13 +7,14 @@ function unescape($arg) {
     return $arg;
 }
 
-
 $filename = "ep19.txt";
 file_put_contents('php://stderr', "list stored participants\n");
 
 $handle = fopen($filename, 'r');
 $result = array();
 header('Content-Type: application/javascript');
+header('Pragma: no-cache');
+header('Cache-Control: no-cache, no-store');
 
 while (($data = fgetcsv($handle)) !== false) {
     // layout is: naam, persons, room, extra, remarks

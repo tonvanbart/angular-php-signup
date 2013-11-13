@@ -79,6 +79,19 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
 <script src="controller.js"></script>
+    <script type="text/javascript">
+        var alertFallback = false;
+        if (typeof console === "undefined" || typeof console.log === "undefined") {
+            console = {};
+            if (alertFallback) {
+                console.log = function(msg) {
+                    alert(msg);
+                };
+            } else {
+                console.log = function() {};
+            }
+        }
+    </script>
 </div>
 </body>
 </html>
