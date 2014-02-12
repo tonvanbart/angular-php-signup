@@ -12,7 +12,7 @@ file_put_contents('php://stderr', "list stored participants\n");
 
 $handle = fopen($filename, 'r');
 $result = array();
-header('Content-Type: application/javascript');
+header('Content-Type: application/javascript; charset=UTF-8');
 header('Pragma: no-cache');
 header('Cache-Control: no-cache, no-store');
 

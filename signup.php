@@ -1,6 +1,6 @@
 <?php
 
-$debug = false;
+$debug = true;
 $filename = 'ep19.txt';
 
 function isBlank($field) {
@@ -26,7 +26,7 @@ function get_post_data() {
     logvar('POSTDATA', $_POST);
     $result = array();
     foreach ($_POST as $key => $value) {
-        $result[$key] = htmlentities($value);
+        $result[$key] = htmlspecialchars($value);
         if (strcasecmp($result[$key], "undefined") == 0) {
             $result[$key] = "";
         }

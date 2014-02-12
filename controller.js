@@ -8,7 +8,7 @@ app.controller('control', function control($scope,$http) {
         $scope.formdata = { naam: $scope.naam, persons: $scope.persons, room: $scope.room, extra: $scope.extra, remarks: $scope.remarks };
         $http({
             method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             data: $scope.formdata,
             url: 'signup.php',
             transformRequest: function(obj) {
