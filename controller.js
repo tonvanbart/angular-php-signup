@@ -1,4 +1,4 @@
-var app = angular.module('signup',[]);
+var app = angular.module('signup',['ngBootstrap']);
 
 app.controller('control', function control($scope,$http) {
 

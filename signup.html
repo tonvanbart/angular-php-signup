@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/daterangepicker-bs3.css" rel="stylesheet">
     <style type="text/css">
         /* form styles */
         .error {
@@ -54,6 +55,9 @@
     <label for="extra">Would you like an extra night before or after EP?</label><br>
     <select name="extra" id="extra" ng-model="extra" ng-options="extra for extra in extras">
     </select>
+    <br>
+    <label for="startend">Arrival and departure dates</label><br>
+    <input ng-model="startend" type="daterange" name="startend" id="startend" />
     <br><br>
     <button ng-click="submit()" ng-disabled="processing" class="btn btn-default">submit</button>
 </form>
@@ -76,10 +80,13 @@
     </tr>
 </table>
 <br>
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
-<script src="controller.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <script src="script/moment.min.js"></script>
+    <script src="script/daterangepicker.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
+    <script src="script/ng-bs-daterangepicker.js"></script>
+    <script src="controller.js"></script>
     <script type="text/javascript">
         var alertFallback = false;
         if (typeof console === "undefined" || typeof console.log === "undefined") {
@@ -92,6 +99,12 @@
                 console.log = function() {};
             }
         }
+
+/*
+        $(document).ready(function() {
+            $('input[name="daterange"]').daterangepicker();
+        });
+*/
     </script>
 </div>
 </body>
