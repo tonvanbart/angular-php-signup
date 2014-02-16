@@ -39,8 +39,13 @@
     <input ng-model="naam" type="text" id="naam" name="naam" size="40" placeholder="Enter your name"/>
     <span class="error" id="error-naam" ng-bind="errornaam"></span>
     <br>
-    <label for="persons">Number of persons</label><br>
+    <label for="persons">Number of persons / bikes / cars</label><br>
+    Persons
     <input ng-model="persons" type="text" id="persons" name="persons" size="2" maxlength="1"/>
+    Bikes
+    <input ng-model="bikes" type="text" id="bikes" name="bikes" size="2" maxlength="1"/>
+    Cars
+    <input ng-model="cars" type="text" id="cars" name="cars" size="2" maxlength="1"/>
     <span class="error" id="error-persons" ng-bind="errorpersons"></span>
     <br>
     <label for="remarks">remarks</label><br>
@@ -57,7 +62,7 @@
     </select>
     <br>
     <label for="startend">Arrival and departure dates</label><br>
-    <input ng-model="startend" type="daterange" name="startend" id="startend" />
+    <input ng-model="startend" type="daterange" name="startend" id="startend" format="MMM DD" min-date="Jul 02" max-date="Jul 07    " />
     <br><br>
     <button ng-click="submit()" ng-disabled="processing" class="btn btn-default">submit</button>
 </form>
@@ -66,7 +71,9 @@
 <table id="participants">
     <tr>
         <th>name</th>
-        <th>number of persons</th>
+        <th>persons</th>
+        <th>bikes</th>
+        <th>cars</th>
         <th>room preference</th>
         <th>extra night before/after</th>
         <th>remarks</th>
@@ -74,6 +81,8 @@
     <tr ng-repeat="participant in participants">
         <td ng-bind="participant.naam"></td>
         <td ng-bind="participant.persons"></td>
+        <td ng-bind="participant.bikes"></td>
+        <td ng-bind="participant.cars"></td>
         <td ng-bind="participant.room"></td>
         <td ng-bind="participant.extra"></td>
         <td ng-bind="participant.remarks"></td>
@@ -99,12 +108,6 @@
                 console.log = function() {};
             }
         }
-
-/*
-        $(document).ready(function() {
-            $('input[name="daterange"]').daterangepicker();
-        });
-*/
     </script>
 </div>
 </body>

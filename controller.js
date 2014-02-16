@@ -3,9 +3,16 @@ var app = angular.module('signup',['ngBootstrap']);
 app.controller('control', function control($scope,$http) {
 
     $scope.submit = function() {
-        console.log("submit(),naam=" + $scope.naam + ",persons=" + $scope.persons + ",room=" + $scope.room + ",extra=" + $scope.extra);
+        console.log("submit(),naam=" + $scope.naam +
+            ",persons=" + $scope.persons +
+            ",bikes=" + $scope.bikes +
+            ",cars=" + $scope.cars +
+            ",room=" + $scope.room +
+            ",extra=" + $scope.extra);
         $scope.processing = true;
-        $scope.formdata = { naam: $scope.naam, persons: $scope.persons, room: $scope.room, extra: $scope.extra, remarks: $scope.remarks };
+        $scope.formdata = { naam: $scope.naam, persons: $scope.persons,
+            bikes: $scope.bikes, cars: $scope.cars,
+            room: $scope.room, extra: $scope.extra, remarks: $scope.remarks };
         $http({
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
@@ -53,6 +60,8 @@ app.controller('control', function control($scope,$http) {
             delete $scope.formdata;
             delete $scope.naam;
             delete $scope.persons;
+            delete $scope.bikes;
+            delete $scope.cars;
             delete $scope.room;
             delete $scope.remarks;
             $scope.extra = 'none';
@@ -62,7 +71,7 @@ app.controller('control', function control($scope,$http) {
                 $scope['error'+data.missing[i]] = "This is a required field";
             }
             if (data.notnum.length > 0) {
-                $scope.errorpersons = "Please enter a number";
+                $scope.errorpersons = "Please enter only numbers";
             }
         }
     }
@@ -77,9 +86,11 @@ app.controller('control', function control($scope,$http) {
     }
 
     $scope.extras = ['none','before','after','before and after'];
-    $scope.rooms = ['single room','will share a room','double or family room'];
+    $scope.rooms = ['single room','will share a room','double or family room','special access','use tent'];
     $scope.refreshdata();
     $scope.extra = 'none';
     $scope.processing = false;
+    $scope.startDate = "Jul 03";
+    $scope.endDate = "Jul 06";
 
 });

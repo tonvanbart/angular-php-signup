@@ -36,10 +36,11 @@ function get_post_data() {
 
 function get_missing_values($argArray) {
     logvar("get_missing_values argument array", $argArray);
+    $optionals = array("remarks","cars","bikes");
     $result = array();
 
     foreach($argArray as $key => $value) {
-        if ($key != "remarks" && isBlank($value)) {
+        if (!in_array($key, $optionals) && isBlank($value)) {
             $result[] = $key;
         }
     }
@@ -49,14 +50,20 @@ function get_missing_values($argArray) {
 function get_non_numerics($argarray) {
     $result = array();
     if (!is_numeric($argarray['persons'])) {
-        $result[] = 'persons';
+        array_unshift($result, "persons");
+    }
+    if ($argarray['bikes'] != "" && !is_numeric($argarray['bikes'])) {
+        array_unshift($result, "bikes");
+    }
+    if ($argarray['cars'] != "" && !is_numeric($argarray['cars'])) {
+        array_unshift($result, "cars");
     }
     return $result;
 }
 
 function write_to_file($data) {
     global $filename;
-    $csvfields = array($data['naam'], $data['persons'], $data['room'], $data['extra'], $data['remarks']);
+    $csvfields = array($data['naam'], $data['persons'], $data['bikes'], $data['cars'], $data['room'], $data['extra'], $data['remarks']);
 
     if (!file_exists($filename)) {
         touch($filename);

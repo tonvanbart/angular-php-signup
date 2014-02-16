@@ -1,17 +1,7 @@
-"Ton en Karin",2,"double or family room","before and after","Droog wit wijntje graag"
-test,2,"will share a room",none,"this won\'t work"
-test2,2,"double or family room",before,"this shouldn't fail"
-test3,1,"single room","before and after","we're getting there or not"
-test4,4,"single room",none,fgfg'ggg
-test5,1,"will share a room",after,"hallo how's life"
-test6,2,"double or family room",none,"This shouldn't be at the bottom."
-testtest,3,"double or family room","before and after","hallo 'werkt dit"
-ggg,2,"will share a room",none,
-aaaaa,3,"will share a room",none,"de nieuwe bovenste"
-bbbb,1,"single room",none,"I'm the latest"
-ccccc,1,"single room",none,ccccc
-ddddd,1,"single room",none,ddddd
-bl&euro;rk,3,"single room",none,bo&euro;hb&euro;h
-bl&euro;rk,1,"single room",none,"test 2"
-bl€rk,1,"single room",none,"test 3"
-bl€rk,1,"single room",none,"test 4 bo€hbo€h"
+dfd,1,1,,"single room",none,111
+p2,1,,1,"will share a room",none,"1 car h€h€"
+t2,2,1,1,"special access",after,sdsdsd
+t3,1,a,,"single room",none,
+t4,1,,1,"use tent",none,
+"von Rössing",2,1,1,"double or family room","before and after",p€rhaps
+"von Rössing",4,2,1,"double or family room","before and after",hallo
