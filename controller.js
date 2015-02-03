@@ -85,8 +85,34 @@ app.controller('control', function control($scope,$http) {
         return result;
     }
 
+    $scope.getDepartOptions = function() {
+        console.log("getDepartOptions()");
+        var selected = $scope.arriveOptions.indexOf($scope.arrival);
+        console.log("selected=" + selected);
+        var newoptions = departs[selected];
+        $scope.departOptions = newoptions;
+    }
+
     $scope.extras = ['none','before','after','before and after'];
     $scope.rooms = ['single room','will share a room','double or family room','special access','use tent'];
+    var dateOptions = [
+        'june 29',
+        'june 30',
+        'july 1',
+        'july 2',
+        'july 3',
+        'july 4'
+    ];
+    var departs = [
+        ["june 30","july 1","july 2","july 3","july 4","july 5"],
+        ["july 1","july 2","july 3","july 4","july 5"],
+        ["july 2","july 3","july 4","july 5"],
+        ["july 3","july 4","july 5"],
+        ["july 4","july 5"],
+        ["july 5"]
+    ];
+    $scope.arriveOptions = dateOptions;
+    $scope.departOptions = [];
     $scope.refreshdata();
     $scope.extra = 'none';
     $scope.processing = false;

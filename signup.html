@@ -22,18 +22,20 @@
             background-color: #ddd;
         }
     </style>
-    <title>EP19 pre-registration page</title>
+    <title>After EP: visit BMW Motorrad Days</title>
 </head>
 <body ng-controller="control">
 <div class="container">
-<h1>EP19 pre-registration</h1>
-    <img src="images/Mazuria1a.jpeg" alt="Mazurian lake" style="vertical-align: text-top; float:right"/>
-<p class="float:left">EPXIX will bring us deep into Eastern Europe to a region called the Mazurian Lakes in Poland. The date for the meeting is now
-    fixed for July 3-6 but due to the distance of the venue we would offer you to arrive a
-    day earlier and/or stay a day longer with the same conditions as for the meeting.
-    Please note that this is a pre-registration page to get a better estimate as to what the attendance will
-    look like. It will help with the planning and the hotel booking. The formal registration will occur in January 2014.<br/>
-    For the curious, the site of the hotel is <a href="http://www.zamekryn.pl/" target="_blank">here</a> (will open in a new window).
+<h1>After EP: BMW Motorrad Days</h1>
+<p>
+    The weekend following EP20 the BMW Motorrad Days are held in Garmisch.
+    For those wanting to visit, Sasha is arranging a group deal at the
+    <a href="http://www.pichlers-alpenlodge.at/" target="_blank">Pichler&apos;s Alpenlodge</a> (opens
+    in a new window). This hotel is located about 40 minutes from Garmisch.<br>
+    For the deal to work out we need some information about your preferred arrival and departure dates,
+    and your preferred room arrangement.
+    Please fill out the form below if you would like to join the BMW Motorrad visit.
+    <!-- start june 29 end july 5  32 eur pp per night incl breakfast -->
 <form id="signup" name="signup">
     <label for="naam">Your name</label><br>
     <input ng-model="naam" type="text" id="naam" name="naam" size="40" placeholder="Enter your name"/>
@@ -57,12 +59,12 @@
     </select>
     <span class="error" id="error-room" ng-bind="errorroom"></span>
     <br>
-    <label for="extra">Would you like an extra night before or after EP?</label><br>
-    <select name="extra" id="extra" ng-model="extra" ng-options="extra for extra in extras">
-    </select>
+    <label for="arrival">Please first select your preferred arrival date, afterwards your depart date</label><br>
+    arrival:&nbsp;
+    <select name="arrival" data-ng-model="arrival" data-ng-options="arrival for arrival in arriveOptions" data-ng-change="getDepartOptions()"></select>
+    &nbsp;depart:&nbsp;
+    <select data-ng-model="depart" data-ng-options="depart for depart in departOptions" data-ng-show="departOptions.length"></select>
     <br>
-    <label for="startend">Arrival and departure dates</label><br>
-    <input ng-model="startend" type="daterange" name="startend" id="startend" format="MMM DD" min-date="Jul 02" max-date="Jul 07    " />
     <br><br>
     <button ng-click="submit()" ng-disabled="processing" class="btn btn-default">submit</button>
 </form>
