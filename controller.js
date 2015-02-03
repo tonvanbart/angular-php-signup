@@ -8,11 +8,13 @@ app.controller('control', function control($scope,$http) {
             ",bikes=" + $scope.bikes +
             ",cars=" + $scope.cars +
             ",room=" + $scope.room +
-            ",extra=" + $scope.extra);
+            ",arrival=" + $scope.arrival +
+            ",depart=" + $scope.depart);
         $scope.processing = true;
         $scope.formdata = { naam: $scope.naam, persons: $scope.persons,
             bikes: $scope.bikes, cars: $scope.cars,
-            room: $scope.room, extra: $scope.extra, remarks: $scope.remarks };
+            room: $scope.room, remarks: $scope.remarks,
+            arrival: $scope.arrival, depart: $scope.depart};
         $http({
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
@@ -64,7 +66,8 @@ app.controller('control', function control($scope,$http) {
             delete $scope.cars;
             delete $scope.room;
             delete $scope.remarks;
-            $scope.extra = 'none';
+            delete $scope.arrival;
+            $scope.departOptions = [];
             $scope.refreshdata();
         } else {
             for (var i=0; i<data.missing.length; i++) {
@@ -94,7 +97,7 @@ app.controller('control', function control($scope,$http) {
     }
 
     $scope.extras = ['none','before','after','before and after'];
-    $scope.rooms = ['single room','will share a room','double or family room','special access','use tent'];
+    $scope.rooms = ['single room','will share a room','double or family room','special access'];
     var dateOptions = [
         'june 29',
         'june 30',
@@ -114,7 +117,6 @@ app.controller('control', function control($scope,$http) {
     $scope.arriveOptions = dateOptions;
     $scope.departOptions = [];
     $scope.refreshdata();
-    $scope.extra = 'none';
     $scope.processing = false;
     $scope.startDate = "Jul 03";
     $scope.endDate = "Jul 06";

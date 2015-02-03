@@ -61,9 +61,13 @@
     <br>
     <label for="arrival">Please first select your preferred arrival date, afterwards your depart date</label><br>
     arrival:&nbsp;
-    <select name="arrival" data-ng-model="arrival" data-ng-options="arrival for arrival in arriveOptions" data-ng-change="getDepartOptions()"></select>
+    <select name="arrival" id="arrival" data-ng-model="arrival"
+            data-ng-options="arrival for arrival in arriveOptions"
+            data-ng-change="getDepartOptions()">
+        <option value="">select arrival first</option>
+    </select>
     &nbsp;depart:&nbsp;
-    <select data-ng-model="depart" data-ng-options="depart for depart in departOptions" data-ng-show="departOptions.length"></select>
+    <select name="depart" data-ng-model="depart" data-ng-options="depart for depart in departOptions" data-ng-show="departOptions.length"></select>
     <br>
     <br><br>
     <button ng-click="submit()" ng-disabled="processing" class="btn btn-default">submit</button>
@@ -77,7 +81,8 @@
         <th>bikes</th>
         <th>cars</th>
         <th>room preference</th>
-        <th>extra night before/after</th>
+        <th>arrival</th>
+        <th>depart</th>
         <th>remarks</th>
     </tr>
     <tr ng-repeat="participant in participants">
@@ -86,7 +91,8 @@
         <td ng-bind="participant.bikes"></td>
         <td ng-bind="participant.cars"></td>
         <td ng-bind="participant.room"></td>
-        <td ng-bind="participant.extra"></td>
+        <td ng-bind="participant.arrival"></td>
+        <td ng-bind="participant.depart"></td>
         <td ng-bind="participant.remarks"></td>
     </tr>
 </table>

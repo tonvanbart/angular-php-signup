@@ -63,7 +63,8 @@ function get_non_numerics($argarray) {
 
 function write_to_file($data) {
     global $filename;
-    $csvfields = array($data['naam'], $data['persons'], $data['bikes'], $data['cars'], $data['room'], $data['extra'], $data['remarks']);
+    $csvfields = array($data['naam'], $data['persons'], $data['bikes'], $data['cars'],
+        $data['room'], $data['remarks'], $data['arrival'], $data['depart']);
 
     if (!file_exists($filename)) {
         touch($filename);
