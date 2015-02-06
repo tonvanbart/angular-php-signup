@@ -1,4 +1,0 @@
-sfsfsdf,3,1,,"double or family room",,"june 30","july 1"
-b,4,2,,"single room",,"june 29","july 2"
-xxc,5,,,"single room",5,"june 29","june 30"
-sdfsfd,6,,,"special access",sdfsdf,"june 29","july 5"
