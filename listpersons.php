@@ -7,7 +7,7 @@ function unescape($arg) {
     return $arg;
 }
 
-$filename = "ep19.txt";
+$filename = "data/bmwdays.txt";
 file_put_contents('php://stderr', "list stored participants\n");
 
 $handle = fopen($filename, 'r');

@@ -1,7 +1,7 @@
 <?php
 
 $debug = true;
-$filename = 'ep19.txt';
+$filename = 'data/bmwdays.txt';
 
 function isBlank($field) {
     return (!$field || $field == "" || $field == "null");
