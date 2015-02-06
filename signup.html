@@ -69,7 +69,8 @@
     &nbsp;depart:&nbsp;
     <select name="depart" data-ng-model="depart" data-ng-options="depart for depart in departOptions" data-ng-show="departOptions.length"></select>
     <br>
-    <br><br>
+    <span class="error" id="error-dates" ng-bind="errordates"></span>
+    <br>
     <button ng-click="submit()" ng-disabled="processing" class="btn btn-default">submit</button>
 </form>
    </p>

@@ -58,6 +58,7 @@ app.controller('control', function control($scope,$http) {
         delete $scope.errornaam;
         delete $scope.errorpersons;
         delete $scope.errorroom;
+        delete $scope.errordates;
         if (data.written) {
             delete $scope.formdata;
             delete $scope.naam;
@@ -67,11 +68,15 @@ app.controller('control', function control($scope,$http) {
             delete $scope.room;
             delete $scope.remarks;
             delete $scope.arrival;
+            delete $scope.depart;
             $scope.departOptions = [];
             $scope.refreshdata();
         } else {
             for (var i=0; i<data.missing.length; i++) {
                 $scope['error'+data.missing[i]] = "This is a required field";
+            }
+            if (data.missing.indexOf("arrival") != -1 || data.missing.indexOf("depart") != -1) {
+                $scope['errordates'] = "Please first select arrival, then depart date";
             }
             if (data.notnum.length > 0) {
                 $scope.errorpersons = "Please enter only numbers";

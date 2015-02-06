@@ -4,7 +4,7 @@ $debug = true;
 $filename = 'ep19.txt';
 
 function isBlank($field) {
-    return (!$field || $field == "");
+    return (!$field || $field == "" || $field == "null");
 }
 
 function logtxt($text) {
